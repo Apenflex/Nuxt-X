@@ -1,0 +1,30 @@
+{
+    "name": "example",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "start": "node .output/server/index.mjs",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@nuxt/image": "^1.4.0",
+        "@nuxtjs/sitemap": "^5.1.2",
+        "@pinia/nuxt": "^0.5.1",
+        "@unlazy/nuxt": "^0.11.2",
+        "@vee-validate/nuxt": "^4.12.6",
+        "@vee-validate/rules": "^4.12.6",
+        "nuxt": "^3.11.1",
+        "nuxt-icon": "^0.6.10",
+        "pinia": "^2.1.7",
+        "sass": "^1.72.0",
+        "vue": "^3.4.21",
+        "vue-router": "^4.3.0"
+    },
+    "devDependencies": {
+        "@nuxtjs/tailwindcss": "^6.12.0"
+    }
+}
