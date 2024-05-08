@@ -4,7 +4,6 @@ export default {
   darkMode: 'class',
 
   theme: {
-
     screens: {
       xs: "614px",
       sm: "1002px",
@@ -14,7 +13,6 @@ export default {
     },
 
     extend: {
-
       colors: {
         dim: {
           50: "#5F99F7",
@@ -29,7 +27,6 @@ export default {
           900: "#15202b",
         },
       },
-
     },
   },
   plugins: [],
