@@ -1,17 +1,14 @@
 <script setup>
-const config = useRuntimeConfig()
-const route = useRoute()
-useCustomHead(config.public?.appHost, route.path)
-useSeoMeta({
-    title: 'HomePage',
-    ogTitle: 'HomePage',
-    description: 'HomePage',
-    ogDescription: 'HomePage'
-})
+
 </script>
 
 <template>
-    <main class="home-page">
-        <div class="container">Home Page</div>
-    </main>
+    <!-- Left Sidebar -->
+    <div class="md:block xs:col-span-1 xl:col-span-2">
+        <div class="sticky top-0">
+            <SidebarLeft />
+        </div>
+    </div>
+    <!-- Main Content -->
+    <!-- Right Sidebar -->
 </template>
