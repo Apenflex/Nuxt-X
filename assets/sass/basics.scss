@@ -1,119 +1,134 @@
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-// @include font-face('', '', 400);
-
-html,
-body {
-	// font-size: 24px;
-	// line-height: 33.6px;
-    font-weight: 400;
-}
-body {
-    position: relative;
-    // background-color: $dark500;
-    // color: $white;
-    font-family: 'Inter', sans-serif;
-    min-height: 100dvh;
-    scroll-behavior: smooth;
-    -webkit-tap-highlight-color: transparent;
-}
-
-a {
-    text-decoration: none;
-    // color: $white;
-    cursor: pointer;
-    display: block;
-    // -webkit-tap-highlight-color: transparent;
-}
-
-ul,
-ol,
-li {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-button {
-    border: none;
-}
-
-img {
-    max-width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-}
-
-svg {
-    display: block;
-}
-
-input,
-button,
-textarea,
-select {
-    font: inherit;
-    border: none;
-}
-
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6,
-// .h1,
-// .h2,
-// .h3,
-// .h4,
-// .h5,
-// .h6 {
-//     // font-weight: 700;
-//     // font-family: 'SourceCodePro', sans-serif;
-// }
-
-// h1,
-// .h1 {}
-
-// h2,
-// .h2 {}
-
-// h3,
-// .h3 {}
-
-// h4,
-// .h4 {}
-
-// h5,
-// .h5 {}
-
-// h6,
-// .h6 {}
-
-// p {}
-
-.router-link-exact-active {
-    // pointer-events: none;
-}
-
-.container {
-    margin-inline: auto;
-    width: min(100% - lgValue(250), 1920px);
-    @include media($lg) {
-        width: min(100% - lgValue(140), 1920px);
+@layer base {
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
     }
-    @include media($smPlus) {
-        width: min(100% - mdValue(50), 1920px);
+
+    // @include font-face('', '', 400);
+
+    html,
+    body {
+        // font-size: 24px;
+        // line-height: 33.6px;
+        font-weight: 400;
     }
-    @include media($sm) {
-        width: min(100% - 32px, 1920px);
+    body {
+        position: relative;
+        // background-color: $dark500;
+        // color: $white;
+        font-family: 'Inter', sans-serif;
+        min-height: 100dvh;
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+        text-decoration: none;
+        // color: $white;
+        cursor: pointer;
+        display: block;
+        // -webkit-tap-highlight-color: transparent;
+    }
+
+    ul,
+    ol,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    button {
+        border: none;
+    }
+
+    img {
+        max-width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    svg {
+        display: block;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+        border: none;
+    }
+
+    // h1,
+    // h2,
+    // h3,
+    // h4,
+    // h5,
+    // h6,
+    // .h1,
+    // .h2,
+    // .h3,
+    // .h4,
+    // .h5,
+    // .h6 {
+    //     // font-weight: 700;
+    //     // font-family: 'SourceCodePro', sans-serif;
+    // }
+
+    // h1,
+    // .h1 {}
+
+    // h2,
+    // .h2 {}
+
+    // h3,
+    // .h3 {}
+
+    // h4,
+    // .h4 {}
+
+    // h5,
+    // .h5 {}
+
+    // h6,
+    // .h6 {}
+
+    // p {}
+
+    .router-link-exact-active {
+        // pointer-events: none;
+    }
+
+    .container {
+        margin-inline: auto;
+        width: min(100% - lgValue(250), 1920px);
+        @include media($lg) {
+            width: min(100% - lgValue(140), 1920px);
+        }
+        @include media($smPlus) {
+            width: min(100% - mdValue(50), 1920px);
+        }
+        @include media($sm) {
+            width: min(100% - 32px, 1920px);
+        }
+    }
+
+    // .defaultTransition {
+    //     transition: all $transitionTime ease-in-out;
+    // }
+}
+@layer utilities {
+    .defaultTransition {
+        @apply transition-all ease-in-out duration-300;
     }
 }

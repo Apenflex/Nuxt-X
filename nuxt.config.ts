@@ -45,20 +45,21 @@ export default defineNuxtConfig({
     // },
     $production: {
         nitro: {
-            routeRules: {
-                '/': {
-                    swr: 3600,
-                    headers: { 'cache-control': 's-maxage=86400' }
-                },
-                '/**': {
-                    swr: 3600,
-                    headers: { 'cache-control': 's-maxage=86400' }
-                },
-                '/**/**': {
-                    swr: 3600,
-                    headers: { 'cache-control': 's-maxage=86400' }
-                }
-            },
+            preset: 'vercel',
+            // routeRules: {
+            //     '/': {
+            //         swr: 3600,
+            //         headers: { 'cache-control': 's-maxage=86400' }
+            //     },
+            //     '/**': {
+            //         swr: 3600,
+            //         headers: { 'cache-control': 's-maxage=86400' }
+            //     },
+            //     '/**/**': {
+            //         swr: 3600,
+            //         headers: { 'cache-control': 's-maxage=86400' }
+            //     }
+            // },
             compressPublicAssets: true
         }
     },

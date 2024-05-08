@@ -37,7 +37,7 @@ const tabs = ref([
 </script>
 
 <template>
-    <div class="md:block xs:col-span-1 xl:col-span-2">
+    <div class="hidden md:block xs:col-span-1 xl:col-span-2">
         <div class="sticky top-0">
             <div class="flex flex-col h-screen">
                 <div 
