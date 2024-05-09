@@ -14,9 +14,13 @@
         "@nuxt/image": "^1.4.0",
         "@nuxtjs/sitemap": "^5.1.2",
         "@pinia/nuxt": "^0.5.1",
+        "@prisma/client": "^5.13.0",
+        "@tailwindcss/forms": "^0.5.7",
         "@unlazy/nuxt": "^0.11.2",
         "@vee-validate/nuxt": "^4.12.6",
         "@vee-validate/rules": "^4.12.6",
+        "bcrypt": "^5.1.1",
+        "jsonwebtoken": "^9.0.2",
         "nuxt": "^3.11.1",
         "nuxt-icon": "^0.6.10",
         "pinia": "^2.1.7",
@@ -25,6 +29,7 @@
         "vue-router": "^4.3.0"
     },
     "devDependencies": {
-        "@nuxtjs/tailwindcss": "^6.12.0"
+        "@nuxtjs/tailwindcss": "^6.12.0",
+        "prisma": "^5.13.0"
     }
 }

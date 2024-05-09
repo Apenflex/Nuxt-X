@@ -1,5 +1,4 @@
 <script setup>
-
 const tabs = ref([
     {
         name: 'Home',

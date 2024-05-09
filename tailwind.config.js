@@ -26,9 +26,10 @@ export default {
           800: "#162d40",
           900: "#15202b",
         },
+        white200: "#f5f5f5",
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }
 

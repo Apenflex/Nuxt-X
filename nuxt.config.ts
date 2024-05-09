@@ -4,8 +4,10 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             // apiHost: process.env.API_HOST,
-            appHost: process.env.APP_HOST
-        }
+            appHost: process.env.APP_HOST,
+        },
+        jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
+        jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET
     },
     css: ['@/assets/sass/app.scss'],
     components: [
