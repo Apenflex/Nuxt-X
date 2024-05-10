@@ -1,5 +1,6 @@
 import { defineRule } from 'vee-validate';
 import * as rules from '@vee-validate/rules';
+
 Object.keys(rules).forEach(rule => {
     if (typeof rules[rule] === 'function') defineRule(rule, rules[rule]);
 });
@@ -27,13 +28,14 @@ export default defineNuxtPlugin(() => {
     });
 
     defineRule('password', (value) => {
-        if ( rules.required(value) && rules.min(value, { length: 8 })) {
+        const passLength = 3;
+        if ( rules.required(value) && rules.min(value, { length: passLength })) {
             return true;
         }
-        return 'Password must be at least 8 characters';
+        return `Password must be at least ${passLength} characters`;
     });
 
-    defineRule('confirmPassword', (value, [target], ctx) => {
+    defineRule('repeatPassword', (value, [target], ctx) => {
         if (rules.required(value) && value === ctx.form[target]) {
             return true;
         }

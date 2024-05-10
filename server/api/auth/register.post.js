@@ -1,5 +1,5 @@
-// import { createUser } from '~/utils/actions/createUser.js'
-// import userTransformer from "~/utils/hooks/userTransformer.js"
+import { prisma } from "~/prisma/client.js";
+import bcrypt from "bcrypt";
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
@@ -31,10 +31,31 @@ export default defineEventHandler(async (event) => {
         name,
         profileImage: 'https://api.dicebear.com/8.x/pixel-art/svg'
     }
+    
+    const isUserExist = await prisma.user.findUnique({
+        where: {
+            username
+        }
+    })
+    if(isUserExist) {
+        throw createError({
+            statusMessage: 'User already exists'
+        })
+    }
 
     const user = await createUser(userData)
 
+    const { accessToken } = generateTokens(user)
+
+    await createRefreshToken(
+        {
+            token: accessToken,
+            userId: user.id
+        }
+    )
+
     return {
-        body: userTransformer(user)
+        access_token: accessToken,
+        user: userTransformer(user)
     }
 })

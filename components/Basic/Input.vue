@@ -21,6 +21,10 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
     error: {
         type: String,
         default: null
@@ -44,12 +48,13 @@ const props = defineProps({
                 :name="name"
                 :placeholder="placeholder"
                 :type="type"
+                :disabled="disabled"
                 class="block px-4 w-full border-gray-500 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm defaultTransition"
             >
         </div>
         <p 
             v-if="error"
-            class="absolute bottom-100 left-0  text-sm text-red-600"
+            class="absolute bottom-100 left-0 text-xs font-light text-red-600"
         >
             {{ error }}
         </p>

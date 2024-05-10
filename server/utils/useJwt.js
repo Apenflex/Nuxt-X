@@ -23,7 +23,7 @@ const generateRefreshToken = (user) => {
         },
         config.jwtRefreshSecret,
         {
-            expiresIn: '7d'
+            expiresIn: '1d'
         }
     )
 }
@@ -37,12 +37,12 @@ export const generateTokens = (user) => {
         refreshToken
     }
 }
-export const sendRefreshTokenCookie = (event, refreshToken) => {
-    setCookie(event.res, "refresh_token", refreshToken, {
-        httpOnly: true,
-        sameSite: true
-    })
-}
+// export const sendRefreshTokenCookie = (event, refreshToken) => {
+//     setCookie(event.res, "refresh_token", refreshToken, {
+//         httpOnly: true,
+//         sameSite: true
+//     })
+// }
 
 export const createRefreshToken = (refreshToken) => {
     return prisma.refreshToken.create({

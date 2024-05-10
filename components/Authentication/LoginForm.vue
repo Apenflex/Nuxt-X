@@ -1,35 +1,37 @@
 <script setup>
-const store = useStore()
+const store = useAuthStore()
 
 const { meta, handleSubmit, resetForm } = useForm()
 const { value: username, errorMessage: usernameError } = useField('User Name', 'required')
 const { value: password, errorMessage: passwordErrorMessage } = useField('Password', 'password')
 
-const formLoading = ref(false)
-
+const toast = useToast()
 const onSubmit = handleSubmit(() => {
-    console.log('submitting form', username.value, password.value)
-    // 
-    formLoading.value = true
-    store.ACT_LOGIN_USER({
-        username: username.value,
-        password: password.value
-    })
+    store.authFormLoading = true
+    store
+        .ACT_LOGIN_USER({
+            username: username.value,
+            password: password.value
+        })
         .then(() => {
             resetForm()
-            console.log('login success')
-            formLoading.value = false
+            // console.log('login success')
+            store.authFormLoading = false
+        })
+        .catch(error => {
+            toast.error(error.message)
+            store.authFormLoading = false
         })
 })
 </script>
 
 <template>
     <div class="w-full">
-        <form 
+        <form
             @submit.prevent="onSubmit"
             class="pt-5 space-y-6"
         >
-            <Input 
+            <Input
                 v-model:value="username"
                 name="username"
                 label="User Name"
