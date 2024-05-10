@@ -8,8 +8,7 @@
         "start": "node .output/server/index.mjs",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
-        "postinstall": "nuxt prepare",
-        "vercel-build": "prisma generate && prisma migrate deploy && nuxt build"
+        "postinstall": "nuxt prepare && prisma generate"
     },
     "dependencies": {
         "@nuxt/image": "^1.4.0",
