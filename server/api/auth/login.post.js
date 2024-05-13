@@ -28,10 +28,10 @@ export default defineEventHandler(async (event) => {
 
     const { accessToken, refreshToken } = generateTokens(user)
 
-    const existingToken = await getRefreshTokenByUserId(user.id)
+    const existingToken = await getTokenByUserId(user.id)
 
     if (existingToken) {
-        await updateRefreshToken(user.id, refreshToken);
+        await updateTokenByUserId(user.id, refreshToken);
     } else {
         await createRefreshToken(
             {

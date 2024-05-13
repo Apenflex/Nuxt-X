@@ -50,7 +50,7 @@ export const createRefreshToken = (refreshToken) => {
     })
 }
 
-export const getRefreshTokenByUserId = (userId) => {
+export const getTokenByUserId = (userId) => {
     return prisma.refreshToken.findFirst({
         where: {
             userId
@@ -58,7 +58,7 @@ export const getRefreshTokenByUserId = (userId) => {
     })
 }
 
-export const updateRefreshToken = (userId, refreshToken) => {
+export const updateTokenByUserId = (userId, refreshToken) => {
     return prisma.refreshToken.updateMany({
         where: {
             userId
