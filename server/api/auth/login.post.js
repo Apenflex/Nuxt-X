@@ -28,15 +28,21 @@ export default defineEventHandler(async (event) => {
 
     const { accessToken, refreshToken } = generateTokens(user)
 
-    await createRefreshToken(
-        {
-            token: refreshToken,
-            userId: user.id
-        }
-    )
-    
+    const existingToken = await getRefreshTokenByUserId(user.id)
+
+    if (existingToken) {
+        await updateRefreshToken(user.id, refreshToken);
+    } else {
+        await createRefreshToken(
+            {
+                token: refreshToken,
+                userId: user.id
+            }
+        )
+    }
+
     return {
-        access_token: accessToken,
+        access_token: existingToken ? refreshToken : accessToken,
         user: userTransformer(user)
     }
 })

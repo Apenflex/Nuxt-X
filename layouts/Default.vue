@@ -8,7 +8,7 @@ const store = useAuthStore()
         <div class="bg-white dark:bg-dim-900">
             <!-- App -->
             <div
-                v-if="store.authUser"
+                v-if="store.authToken"
                 class="min-h-full"
             >
                 <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">

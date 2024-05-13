@@ -51,7 +51,7 @@ export const useAuthStore = defineStore('useAuthStore', {
     },
     persist: {
         enabled: true,
-        paths: ['authToken', 'authUser'],
+        paths: ['authToken'],
         storage: persistedState.cookiesWithOptions({
             name: 'authStore',
             // httpOnly: true,

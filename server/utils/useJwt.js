@@ -49,3 +49,22 @@ export const createRefreshToken = (refreshToken) => {
         data: refreshToken
     })
 }
+
+export const getRefreshTokenByUserId = (userId) => {
+    return prisma.refreshToken.findFirst({
+        where: {
+            userId
+        }
+    })
+}
+
+export const updateRefreshToken = (userId, refreshToken) => {
+    return prisma.refreshToken.updateMany({
+        where: {
+            userId
+        },
+        data: {
+            token: refreshToken
+        }
+    })
+}
