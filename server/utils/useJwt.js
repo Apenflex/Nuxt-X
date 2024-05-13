@@ -50,6 +50,14 @@ export const createRefreshToken = (refreshToken) => {
     })
 }
 
+export const getRefreshTokenByToken = (token) => {
+    return prisma.refreshToken.findUnique({
+        where: {
+            token
+        }
+    })
+}
+
 export const getTokenByUserId = (userId) => {
     return prisma.refreshToken.findFirst({
         where: {

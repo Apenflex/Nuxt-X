@@ -1,6 +1,7 @@
 export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({
-        authFormLoading: false,
+        authLoading: false,
+        // authFormLoading: false,
         authToken: null,
         authUser: null,
     }),
@@ -47,6 +48,21 @@ export const useAuthStore = defineStore('useAuthStore', {
         ACT_LOGOUT_USER() {
             this.authToken = null
             this.authUser = null
+        },
+        ACT_REFRESH_TOKEN() {
+            return new Promise(async (resolve, reject) => {
+                await $fetch('/api/auth/refresh')
+                .then((data) => {
+                    this.authToken = data.access_token
+                    resolve(data)
+                })
+                .catch(err => reject(err.data))
+            })
+        },
+        ACT_INIT_AUTH() {
+            return new Promise(async (resolve, reject) => {
+
+            })
         }
     },
     persist: {

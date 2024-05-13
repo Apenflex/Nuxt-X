@@ -7,7 +7,8 @@ const { value: password, errorMessage: passwordErrorMessage } = useField('Passwo
 
 const toast = useToast()
 const onSubmit = handleSubmit(() => {
-    store.authFormLoading = true
+    store.authLoading = true
+    // store.authFormLoading = true
     store
         .ACT_LOGIN_USER({
             username: username.value,
@@ -16,11 +17,13 @@ const onSubmit = handleSubmit(() => {
         .then(() => {
             resetForm()
             // console.log('login success')
-            store.authFormLoading = false
+            store.authLoading = false
+            // store.authFormLoading = false
         })
         .catch(error => {
             toast.error(error.message)
-            store.authFormLoading = false
+            store.authLoading = false
+            // store.authFormLoading = false
         })
 })
 </script>

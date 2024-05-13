@@ -13,7 +13,8 @@ const { value: repeatPassword, errorMessage: repeatPasswordErrorMessage } = useF
 )
 const toast = useToast()
 const onSubmit = handleSubmit(() => {
-    store.authFormLoading = true
+    store.authLoading = true
+    // store.authFormLoading = true
 
     store
         .ACT_REGISTER_USER({
@@ -26,11 +27,13 @@ const onSubmit = handleSubmit(() => {
         .then(() => {
             resetForm()
             toast.success('Registration successful')
-            store.authFormLoading = false
+            store.authLoading = false
+            // store.authFormLoading = false
         })
         .catch(error => {
             toast.error(error.message)
-            store.authFormLoading = false
+            store.authLoading = false
+            // store.authFormLoading = false
         })
 })
 </script>
