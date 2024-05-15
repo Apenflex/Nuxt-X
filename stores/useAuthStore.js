@@ -1,30 +1,30 @@
 export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({
         authLoading: false,
-        // authFormLoading: false,
+        authFormLoading: false,
         // authToken: null,
         // authUser: null,
     }),
     actions: {
-        ACT_LOGIN_USER({ username, password }) {
-            // console.log(username, password, 'ACT_LOGIN_USER')
-            return new Promise(async(resolve, reject) => {
-                await $fetch('/api/auth/login', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
-                })
-                .then((data) => {
-                    // console.log(data, 'ACT_LOGIN_USER')
-                    // this.authToken = data.access_token
-                    // this.authUser = data.user
-                    resolve(data)
-                })
-                .catch(err => reject(err.data))
-            })
-        },
+        // ACT_LOGIN_USER({ username, password }) {
+        //     // console.log(username, password, 'ACT_LOGIN_USER')
+        //     return new Promise(async(resolve, reject) => {
+        //         await $fetch('/api/auth/login', {
+        //             method: 'POST',
+        //             body: JSON.stringify({
+        //                 username: username,
+        //                 password: password
+        //             })
+        //         })
+        //         .then((data) => {
+        //             // console.log(data, 'ACT_LOGIN_USER')
+        //             // this.authToken = data.access_token
+        //             // this.authUser = data.user
+        //             resolve(data)
+        //         })
+        //         .catch(err => reject(err.data))
+        //     })
+        // },
         ACT_REGISTER_USER({ username, email, password, repeatPassword, name }) {
             return new Promise(async(resolve, reject) => {
                 await $fetch('/api/auth/register', {
@@ -66,7 +66,7 @@ export const useAuthStore = defineStore('useAuthStore', {
         // }
     },
     // persist: {
-    //     enabled: true,
+        // enabled: true,
     //     paths: ['authToken'],
     //     storage: persistedState.cookiesWithOptions({
     //         name: 'authStore',

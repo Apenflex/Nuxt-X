@@ -8,30 +8,23 @@ const { value: username, errorMessage: usernameError } = useField('User Name', '
 const { value: password, errorMessage: passwordErrorMessage } = useField('Password', 'password')
 
 const toast = useToast()
-const onSubmit = handleSubmit(() => {
+const onSubmit = handleSubmit(async() => {
     // store.authLoading = true
-    // store.authFormLoading = true
-    // store
-    //     .ACT_LOGIN_USER({
-    //         username: username.value,
-    //         password: password.value
-    //     })
-    //     .then(() => {
-    //         resetForm()
-    //         // console.log('login success')
-    //         store.authLoading = false
-    //         // store.authFormLoading = false
-    //     })
-    //     .catch(error => {
-    //         toast.error(error.message)
-    //         store.authLoading = false
-    //         // store.authFormLoading = false
-    //     })
-    signIn('credentials', {
-                username: username.value,
-                password: password.value,
-                // redirect: false
-            })
+    store.authFormLoading = true
+    const { error, url } = await signIn('credentials', {
+        username: username.value,
+        password: password.value,
+        redirect: false
+    })
+
+    if (error) {
+        toast.error(error)
+    } else {
+        resetForm()
+        return navigateTo(url, { external: true })
+    }
+    // store.authLoading = false
+    store.authFormLoading = false
 })
 </script>
 
@@ -59,6 +52,8 @@ const onSubmit = handleSubmit(() => {
             <button
                 type="submit"
                 class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 defaultTransition"
+                :class="store.authFormLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'"
+                :disabled="store.authFormLoading"
             >
                 Login
             </button>

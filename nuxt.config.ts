@@ -8,7 +8,9 @@ export default defineNuxtConfig({
         },
         // authSecret: process.env.AUTH_SECRET,
         jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
-        jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET
+        jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
+        GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+        GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET
     },
     css: ['@/assets/sass/app.scss'],
     components: [
@@ -44,9 +46,6 @@ export default defineNuxtConfig({
         '@sidebase/nuxt-auth'
     ],
     auth: {
-        // provider: {
-        //     type: 'local'
-        // },
         globalAppMiddleware: true
     },
     build: { transpile: ['vue-toastification'] },

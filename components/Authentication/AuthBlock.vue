@@ -22,7 +22,9 @@ const isLogin = ref(true)
                 >
                     {{ isLogin ? 'Register' : 'Login' }}
                 </button>
+                
             </div>
         </div>
+        
     </div>
 </template>
