@@ -11,15 +11,13 @@ export default NuxtAuthHandler({
     pages: {
         signIn: '/login',
     },
-    // adapter: PrismaAdapter(prisma),
-    // callbacks: {
-    //     session: {
-    //         session: async ({ session, token } => {
-    //             const user = await getUser(session)
-    //             return Promise.resolve(session)
-    //         })
-    //     } 
-    // },
+    adapter: PrismaAdapter(prisma),
+    callbacks: {
+        session: async ({ session, token }) => {
+            const user = await getUser(session)
+            return Promise.resolve(session)
+        }
+    },
     providers: [
         // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
         GithubProvider.default({
@@ -50,6 +48,7 @@ export default NuxtAuthHandler({
                 }
                 // console.log('Credentials Match:', credentials.username === user.username && credentials.password === user.password )
                 // console.log(credentials.username, user.username, isPasswordMatch)
+                // console.log(user, 'User')
                 if (credentials.username === user.username && isPasswordMatch) {
                     return user
                 }

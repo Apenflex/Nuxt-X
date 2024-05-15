@@ -2,6 +2,7 @@ export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({
         authLoading: false,
         authFormLoading: false,
+        isLogin: true,
         // authToken: null,
         // authUser: null,
     }),
@@ -38,16 +39,12 @@ export const useAuthStore = defineStore('useAuthStore', {
                     })
                 })
                 .then((data) => {
-                    this.authToken = data.access_token
-                    this.authUser = data.user
+                    // this.authToken = data.access_token
+                    // this.authUser = data.user
                     resolve(data)
                 })
                 .catch(err => reject(err.data))
             })
-        },
-        ACT_LOGOUT_USER() {
-            this.authToken = null
-            this.authUser = null
         },
         // ACT_REFRESH_TOKEN() {
         //     return new Promise(async (resolve, reject) => {
@@ -59,11 +56,6 @@ export const useAuthStore = defineStore('useAuthStore', {
         //         .catch(err => reject(err.data))
         //     })
         // },
-        // ACT_INIT_AUTH() {
-        //     return new Promise(async (resolve, reject) => {
-
-        //     })
-        // }
     },
     // persist: {
         // enabled: true,

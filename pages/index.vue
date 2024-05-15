@@ -3,7 +3,7 @@ definePageMeta({
     middleware: 'auth',
 })
 
-const { data, signOut } = useAuth()
+const { signOut, status } = useAuth()
 const loading = ref(false)
 
 const handdleLogout = async () => {
@@ -12,7 +12,7 @@ const handdleLogout = async () => {
     // loading.value = false
 }
 
-// const { data } = await useFetch('/api/user')
+const { data } = await useFetch('/api/user')
 </script>
 
 <template>
@@ -25,6 +25,7 @@ const handdleLogout = async () => {
             this is our home page
             <pre>
                 {{ data }}
+                {{ status }}
             </pre>
         </MainSection>
         <!-- </div> -->

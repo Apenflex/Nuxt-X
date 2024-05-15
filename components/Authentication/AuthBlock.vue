@@ -1,5 +1,5 @@
 <script setup>
-const isLogin = ref(true)
+const store = useAuthStore()
 </script>
 
 <template>
@@ -13,18 +13,16 @@ const isLogin = ref(true)
         </div>
         <div class="flex flex-col justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="flex flex-col items-center justify-center w-full h-full max-w-sm mx-auto lg:w-[260px] gap-1">
-                <LoginForm v-if="isLogin"/>
+                <LoginForm v-if="store.isLogin" />
                 <RegisterForm v-else/>
                 or
                 <button
                     class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 defaultTransition"
-                    @click="isLogin = !isLogin"
+                    @click="store.isLogin = !store.isLogin"
                 >
-                    {{ isLogin ? 'Register' : 'Login' }}
+                    {{ store.isLogin ? 'Register' : 'Login' }}
                 </button>
-                
             </div>
         </div>
-        
     </div>
 </template>
