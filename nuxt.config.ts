@@ -6,6 +6,7 @@ export default defineNuxtConfig({
             // apiHost: process.env.API_HOST,
             appHost: process.env.APP_HOST
         },
+        // authSecret: process.env.AUTH_SECRET,
         jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
         jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET
     },
@@ -39,13 +40,15 @@ export default defineNuxtConfig({
         '@unlazy/nuxt',
         '@vee-validate/nuxt',
         '@nuxtjs/tailwindcss',
-        '@pinia-plugin-persistedstate/nuxt'
+        '@pinia-plugin-persistedstate/nuxt',
+        '@sidebase/nuxt-auth'
     ],
-    // sitemap: {
-    //     hostname: process.env.APP_HOST,
-    //     gzip: true,
-    //     routes: ['/']
-    // },
+    auth: {
+        // provider: {
+        //     type: 'local'
+        // },
+        globalAppMiddleware: true
+    },
     build: { transpile: ['vue-toastification'] },
     $production: {
         nitro: {

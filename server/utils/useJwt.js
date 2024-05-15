@@ -23,7 +23,7 @@ const generateRefreshToken = (user) => {
         },
         config.jwtRefreshSecret,
         {
-            expiresIn: '1d'
+            expiresIn: '2h'
         }
     )
 }

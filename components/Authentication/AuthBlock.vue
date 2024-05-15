@@ -1,10 +1,7 @@
 <script setup>
 const isLogin = ref(true)
-
-const toggleAuth = () => {
-    isLogin.value = !isLogin.value
-}
 </script>
+
 <template>
     <div class="flex h-screen">
         <div class="relative flex-1 hidden w-0 lg:block">
@@ -21,7 +18,7 @@ const toggleAuth = () => {
                 or
                 <button
                     class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 defaultTransition"
-                    @click="toggleAuth"
+                    @click="isLogin = !isLogin"
                 >
                     {{ isLogin ? 'Register' : 'Login' }}
                 </button>

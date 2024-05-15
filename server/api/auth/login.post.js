@@ -26,23 +26,23 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    const { accessToken, refreshToken } = generateTokens(user)
+    // const { accessToken, refreshToken } = generateTokens(user)
 
-    const existingToken = await getTokenByUserId(user.id)
+    // const existingToken = await getTokenByUserId(user.id)
 
-    if (existingToken) {
-        await updateTokenByUserId(user.id, refreshToken);
-    } else {
-        await createRefreshToken(
-            {
-                token: refreshToken,
-                userId: user.id
-            }
-        )
-    }
+    // if (existingToken) {
+    //     await updateTokenByUserId(user.id, refreshToken);
+    // } else {
+    //     await createRefreshToken(
+    //         {
+    //             token: refreshToken,
+    //             userId: user.id
+    //         }
+    //     )
+    // }
 
     return {
-        access_token: existingToken ? refreshToken : accessToken,
+        // access_token: existingToken ? refreshToken : accessToken,
         user: userTransformer(user)
     }
 })

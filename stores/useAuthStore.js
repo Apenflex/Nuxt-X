@@ -2,8 +2,8 @@ export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({
         authLoading: false,
         // authFormLoading: false,
-        authToken: null,
-        authUser: null,
+        // authToken: null,
+        // authUser: null,
     }),
     actions: {
         ACT_LOGIN_USER({ username, password }) {
@@ -18,8 +18,8 @@ export const useAuthStore = defineStore('useAuthStore', {
                 })
                 .then((data) => {
                     // console.log(data, 'ACT_LOGIN_USER')
-                    this.authToken = data.access_token
-                    this.authUser = data.user
+                    // this.authToken = data.access_token
+                    // this.authUser = data.user
                     resolve(data)
                 })
                 .catch(err => reject(err.data))
@@ -49,32 +49,32 @@ export const useAuthStore = defineStore('useAuthStore', {
             this.authToken = null
             this.authUser = null
         },
-        ACT_REFRESH_TOKEN() {
-            return new Promise(async (resolve, reject) => {
-                await $fetch('/api/auth/refresh')
-                .then((data) => {
-                    this.authToken = data.access_token
-                    resolve(data)
-                })
-                .catch(err => reject(err.data))
-            })
-        },
-        ACT_INIT_AUTH() {
-            return new Promise(async (resolve, reject) => {
+        // ACT_REFRESH_TOKEN() {
+        //     return new Promise(async (resolve, reject) => {
+        //         await $fetch('/api/auth/refresh')
+        //         .then((data) => {
+        //             this.authToken = data.access_token
+        //             resolve(data)
+        //         })
+        //         .catch(err => reject(err.data))
+        //     })
+        // },
+        // ACT_INIT_AUTH() {
+        //     return new Promise(async (resolve, reject) => {
 
-            })
-        }
+        //     })
+        // }
     },
-    persist: {
-        enabled: true,
-        paths: ['authToken'],
-        storage: persistedState.cookiesWithOptions({
-            name: 'authStore',
-            // httpOnly: true,
-            sameSite: 'strict',
-            // maxAge: new Date(Date.now() + 7200 * 1000),
-            expires: new Date(Date.now() + 7200 * 1000),
-            secure: process.env.NODE_ENV === 'production'
-        })
-    }
+    // persist: {
+    //     enabled: true,
+    //     paths: ['authToken'],
+    //     storage: persistedState.cookiesWithOptions({
+    //         name: 'authStore',
+    //         // httpOnly: true,
+    //         sameSite: 'strict',
+    //         // maxAge: new Date(Date.now() + 7200 * 1000),
+    //         expires: new Date(Date.now() + 7200 * 1000),
+    //         secure: process.env.NODE_ENV === 'production'
+    //     })
+    // }
 })

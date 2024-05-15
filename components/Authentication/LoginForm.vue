@@ -1,30 +1,37 @@
 <script setup>
 const store = useAuthStore()
 
+const { signIn } = useAuth()
+
 const { meta, handleSubmit, resetForm } = useForm()
 const { value: username, errorMessage: usernameError } = useField('User Name', 'required')
 const { value: password, errorMessage: passwordErrorMessage } = useField('Password', 'password')
 
 const toast = useToast()
 const onSubmit = handleSubmit(() => {
-    store.authLoading = true
+    // store.authLoading = true
     // store.authFormLoading = true
-    store
-        .ACT_LOGIN_USER({
-            username: username.value,
-            password: password.value
-        })
-        .then(() => {
-            resetForm()
-            // console.log('login success')
-            store.authLoading = false
-            // store.authFormLoading = false
-        })
-        .catch(error => {
-            toast.error(error.message)
-            store.authLoading = false
-            // store.authFormLoading = false
-        })
+    // store
+    //     .ACT_LOGIN_USER({
+    //         username: username.value,
+    //         password: password.value
+    //     })
+    //     .then(() => {
+    //         resetForm()
+    //         // console.log('login success')
+    //         store.authLoading = false
+    //         // store.authFormLoading = false
+    //     })
+    //     .catch(error => {
+    //         toast.error(error.message)
+    //         store.authLoading = false
+    //         // store.authFormLoading = false
+    //     })
+    signIn('credentials', {
+                username: username.value,
+                password: password.value,
+                // redirect: false
+            })
 })
 </script>
 
