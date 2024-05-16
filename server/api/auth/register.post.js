@@ -1,5 +1,5 @@
 import { prisma } from "~/prisma/client.js";
-// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
@@ -23,14 +23,6 @@ export default defineEventHandler(async (event) => {
             }
         ))
     }
-
-    const userData = {
-        username,
-        email,
-        password,
-        name,
-        profileImage: 'https://api.dicebear.com/8.x/pixel-art/svg'
-    }
     
     const isUserExist = await prisma.user.findUnique({
         where: {
@@ -43,19 +35,21 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    const user = await createUser(userData)
-
-    const { accessToken } = generateTokens(user)
-
-    await createRefreshToken(
-        {
-            token: accessToken,
-            userId: user.id
-        }
-    )
-
-    return {
-        access_token: accessToken,
-        user: userTransformer(user)
+    const user = {
+        username,
+        email,
+        password: bcrypt.hashSync(password, 10),
+        name,
+        image: 'https://api.dicebear.com/8.x/pixel-art/svg'
     }
+
+    const createdUser = await prisma.user.create({
+        data: user
+    })
+
+    return { user: userTransformer(createdUser) }
+    // {
+    //     access_token: accessToken,
+    //     user: userTransformer(user)
+    // }
 })

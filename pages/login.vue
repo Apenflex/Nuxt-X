@@ -6,7 +6,7 @@ definePageMeta({
         navigateAuthenticatedTo: '/'
     }
 })
-const { status, signIn } = useAuth()
+const { signIn } = useAuth()
 const handleSignIn = async () => {
     await signIn('github')
 }

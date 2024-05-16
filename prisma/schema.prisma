@@ -5,38 +5,56 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
   // previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider             = "mongodb"
-  url                  = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
   // referentialIntegrity = "prisma"
 }
 
 model User {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  email        String
-  name         String?
-  username     String  @unique
-  password     String
-  profileImage String?
+  id            String    @id @default(cuid()) @map("_id") @db.ObjectId
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  username      String?   @unique
+  password      String
+  image         String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  RefreshToken RefreshToken[]
+  sessions Session[]
+  account  Account[]
 }
 
-model RefreshToken {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  token String @unique
+model Account {
+  id                String  @id @default(cuid()) @map("_id") @db.ObjectId
+  userId            String  @unique @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        DateTime?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  userId String @db.ObjectId
+  @@unique([provider, providerAccountId])
+}
 
-  user User @relation(fields: [userId], references: [id])
+model Session {
+  id           String   @id @default(cuid()) @map("_id")
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -1,10 +1,12 @@
 <script setup>
+
 const store = useAuthStore()
 
 const { signIn } = useAuth()
 
 const { meta, handleSubmit, resetForm } = useForm()
-const { value: username, errorMessage: usernameError } = useField('User Name', 'required')
+const { value: email, errorMessage: emailError } = useField('Email', 'email')
+// const { value: username, errorMessage: usernameError } = useField('User Name', 'required')
 const { value: password, errorMessage: passwordErrorMessage } = useField('Password', 'password')
 
 const toast = useToast()
@@ -12,7 +14,8 @@ const onSubmit = handleSubmit(async() => {
     // store.authLoading = true
     store.authFormLoading = true
     const { error, url } = await signIn('credentials', {
-        username: username.value,
+        email: email.value,
+        // username: username.value,
         password: password.value,
         redirect: false
     })
@@ -34,12 +37,20 @@ const onSubmit = handleSubmit(async() => {
             @submit.prevent="onSubmit"
             class="pt-5 space-y-6"
         >
-            <Input
+            <!-- <Input
                 v-model:value="username"
                 name="username"
                 label="User Name"
                 placeholder="@username"
                 :error="usernameError"
+            /> -->
+            <Input
+                v-model:value="email"
+                name="email"
+                label="Email"
+                placeholder="Email"
+                type="email"
+                :error="emailError"
             />
             <Input
                 v-model:value="password"

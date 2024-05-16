@@ -6,9 +6,9 @@ export default defineNuxtConfig({
             // apiHost: process.env.API_HOST,
             appHost: process.env.APP_HOST
         },
-        // authSecret: process.env.AUTH_SECRET,
-        jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
-        jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
+        authSecret: process.env.AUTH_SECRET,
+        // jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
+        // jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
         GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
         GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET
     },
@@ -46,7 +46,11 @@ export default defineNuxtConfig({
         '@sidebase/nuxt-auth'
     ],
     auth: {
-        globalAppMiddleware: true
+        globalAppMiddleware: true,
+        baseURL: process.env.APP_HOST,
+        provider: {
+            type: 'authjs'
+        }
     },
     build: { transpile: ['vue-toastification'] },
     $production: {

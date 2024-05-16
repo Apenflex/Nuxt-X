@@ -8,16 +8,11 @@ import bcrypt from "bcrypt";
 const config = useRuntimeConfig()
 
 export default NuxtAuthHandler({
+    secret: config.authSecret,
     pages: {
         signIn: '/login',
     },
     adapter: PrismaAdapter(prisma),
-    callbacks: {
-        session: async ({ session, token }) => {
-            const user = await getUser(session)
-            return Promise.resolve(session)
-        }
-    },
     providers: [
         // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
         GithubProvider.default({
@@ -26,11 +21,12 @@ export default NuxtAuthHandler({
         }),
         CredentialsProvider.default({
             name: 'credentials',
+            credentials: {},
             async authorize(credentials) {
-                // console.log(credentials, 'Credentials from Login Form')
                 const user = await prisma.user.findUnique({
                     where: {
-                        username: credentials.username
+                        // username: credentials.username
+                        email: credentials.email
                     }
                 })
                 // console.log(user, 'User from MongoDB')
@@ -49,10 +45,31 @@ export default NuxtAuthHandler({
                 // console.log('Credentials Match:', credentials.username === user.username && credentials.password === user.password )
                 // console.log(credentials.username, user.username, isPasswordMatch)
                 // console.log(user, 'User')
-                if (credentials.username === user.username && isPasswordMatch) {
-                    return user
+                if (credentials.email === user.email && isPasswordMatch) {
+                    return userTransformer(user)
                 }
             }
         })
-    ]
+    ],
+    session: {
+        strategy: 'jwt',
+    },
+    callbacks: {
+        async jwt({ token, user, account }) {
+            if (user) {
+                token = {
+                    ...token,
+                    ...user
+                }
+            }
+            return token
+        },
+        async session({ session, token }) {
+            session.user = {
+                ...token,
+                ...session.user
+            }
+            return session
+        }
+    },
 })

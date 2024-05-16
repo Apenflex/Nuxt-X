@@ -3,8 +3,6 @@ export const useAuthStore = defineStore('useAuthStore', {
         authLoading: false,
         authFormLoading: false,
         isLogin: true,
-        // authToken: null,
-        // authUser: null,
     }),
     actions: {
         // ACT_LOGIN_USER({ username, password }) {
