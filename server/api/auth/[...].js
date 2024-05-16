@@ -23,13 +23,14 @@ export default NuxtAuthHandler({
             name: 'credentials',
             credentials: {},
             async authorize(credentials) {
+                console.log(credentials, 'Credentials')
                 const user = await prisma.user.findUnique({
                     where: {
                         // username: credentials.username
                         email: credentials.email
                     }
                 })
-                // console.log(user, 'User from MongoDB')
+                console.log(user, 'User from MongoDB')
                 if(!user) {
                     throw createError({
                         statusMessage: 'User not found'

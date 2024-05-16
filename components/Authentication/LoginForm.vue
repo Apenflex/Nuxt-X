@@ -13,6 +13,7 @@ const toast = useToast()
 const onSubmit = handleSubmit(async() => {
     // store.authLoading = true
     store.authFormLoading = true
+    console.log(email.value, password.value, 'email, password')
     const { error, url } = await signIn('credentials', {
         email: email.value,
         // username: username.value,

@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     const user = {
         username,
         email,
-        password: bcrypt.hashSync(password, 10),
+        hashedPassword: bcrypt.hashSync(password, 10),
         name,
         image: 'https://api.dicebear.com/8.x/pixel-art/svg'
     }
