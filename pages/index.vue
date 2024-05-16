@@ -27,11 +27,11 @@ const { data } = await useFetch('/api/user')
             :loading="loading"
         >
             this is our home page
-            <pre>
+            <!-- <pre>
                 {{ data }}
                 {{ status }}
                 {{ session?.user }}
-            </pre>
+            </pre> -->
         </MainSection>
         <!-- </div> -->
     </main>
