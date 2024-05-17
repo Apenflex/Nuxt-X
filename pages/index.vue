@@ -6,8 +6,8 @@ definePageMeta({
 const { signOut, status, getProviders, getSession } = useAuth()
 const providers = await getProviders()
 const session = await getSession()
-console.log(providers)
-console.log(session, 'session')
+// console.log(providers)
+// console.log(session, 'session')
 const loading = ref(false)
 
 const handdleLogout = async () => {

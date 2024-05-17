@@ -1,5 +1,21 @@
 <script setup>
 const store = useAuthStore()
+
+const { signIn } = useAuth()
+const handleSignIn = async (provider) => {
+    await signIn(provider)
+}
+
+const providerBtn = ref([
+    {
+        provider: 'github',
+        icon: 'mdi:github',
+    },
+    {
+        provider: 'google',
+        icon: 'mdi:google',
+    }
+])
 </script>
 
 <template>
@@ -15,13 +31,31 @@ const store = useAuthStore()
             <div class="flex flex-col items-center justify-center w-full h-full max-w-sm mx-auto lg:w-[260px] gap-1">
                 <LoginForm v-if="store.isLogin" />
                 <RegisterForm v-else/>
-                or
-                <button
-                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 defaultTransition"
-                    @click="store.isLogin = !store.isLogin"
-                >
-                    {{ store.isLogin ? 'Register' : 'Login' }}
-                </button>
+                <div class="text-sm text-gray-500">
+                    or continue with
+                </div>
+                <div class="w-full flex justify-center gap-2">
+                    <template v-for="btn in providerBtn">
+                        <button 
+                            class="w-full flex justify-center py-1 px-5 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 defaultTransition"
+                            @click="handleSignIn(btn.provider)"
+                        >
+                            <Icon :name="btn.icon" class="w-7 h-7" />
+                        </button>
+                    </template>
+                </div>
+                <div class="flex items-center justify-center gap-2 mt-1">
+                    <div class="text-sm text-gray-500">
+                        {{ store.isLogin ? 'Don\'t have account?' : 'Already have account?' }}
+                    </div>
+                    <button
+                        class="text-blue-300 hover:underline text-sm"
+                        @click="store.isLogin = !store.isLogin"
+                    >
+                        {{ store.isLogin ? 'Register' : 'Login' }}
+                    </button>
+                </div>
+                
             </div>
         </div>
     </div>

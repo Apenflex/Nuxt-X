@@ -23,20 +23,20 @@ export default NuxtAuthHandler({
             name: 'credentials',
             credentials: {},
             async authorize(credentials) {
-                console.log(credentials, 'Credentials')
+                // console.log(credentials, 'Credentials')
                 const user = await prisma.user.findUnique({
                     where: {
                         // username: credentials.username
                         email: credentials.email
                     }
                 })
-                console.log(user, 'User from MongoDB')
+                // console.log(user, 'User from MongoDB')
                 if(!user) {
                     throw createError({
                         statusMessage: 'User not found'
                     })
                 }
-                const isPasswordMatch = bcrypt.compareSync(credentials.password, user.password)
+                const isPasswordMatch = bcrypt.compareSync(credentials.password, user.hashedPassword)
                 // console.log(Boolean(isPasswordMatch), 'isPasswordMatch')
                 if (!isPasswordMatch) {
                     throw createError({

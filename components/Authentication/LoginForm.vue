@@ -16,7 +16,6 @@ const onSubmit = handleSubmit(async() => {
     console.log(email.value, password.value, 'email, password')
     const { error, url } = await signIn('credentials', {
         email: email.value,
-        // username: username.value,
         password: password.value,
         redirect: false
     })
@@ -38,13 +37,6 @@ const onSubmit = handleSubmit(async() => {
             @submit.prevent="onSubmit"
             class="pt-5 space-y-6"
         >
-            <!-- <Input
-                v-model:value="username"
-                name="username"
-                label="User Name"
-                placeholder="@username"
-                :error="usernameError"
-            /> -->
             <Input
                 v-model:value="email"
                 name="email"
