@@ -3,7 +3,9 @@ const store = useAuthStore()
 
 const { signIn } = useAuth()
 const handleSignIn = async (provider) => {
+    store.authLoading = true
     await signIn(provider)
+    store.authLoading = false
 }
 
 const providerBtn = ref([

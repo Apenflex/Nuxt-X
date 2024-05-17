@@ -48,8 +48,4 @@ export default defineEventHandler(async (event) => {
     })
 
     return { user: userTransformer(createdUser) }
-    // {
-    //     access_token: accessToken,
-    //     user: userTransformer(user)
-    // }
 })

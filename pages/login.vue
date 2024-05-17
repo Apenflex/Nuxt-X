@@ -6,10 +6,9 @@ definePageMeta({
         navigateAuthenticatedTo: '/'
     }
 })
+const store = useAuthStore()
 </script>
 <template>
-    <div>
-        <AuthBlock />
-        
-    </div>
+    <AuthLoading v-if="store.authLoading" />
+    <AuthBlock v-else />
 </template>

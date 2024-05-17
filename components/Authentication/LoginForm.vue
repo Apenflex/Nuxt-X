@@ -1,7 +1,6 @@
 <script setup>
 
 const store = useAuthStore()
-
 const { signIn } = useAuth()
 
 const { meta, handleSubmit, resetForm } = useForm()
@@ -11,9 +10,9 @@ const { value: password, errorMessage: passwordErrorMessage } = useField('Passwo
 
 const toast = useToast()
 const onSubmit = handleSubmit(async() => {
-    // store.authLoading = true
+    store.authLoading = true
     store.authFormLoading = true
-    console.log(email.value, password.value, 'email, password')
+    // console.log(email.value, password.value, 'email, password')
     const { error, url } = await signIn('credentials', {
         email: email.value,
         password: password.value,
@@ -26,7 +25,7 @@ const onSubmit = handleSubmit(async() => {
         resetForm()
         return navigateTo(url, { external: true })
     }
-    // store.authLoading = false
+    store.authLoading = false
     store.authFormLoading = false
 })
 </script>

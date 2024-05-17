@@ -1,5 +1,6 @@
 export const useAuthStore = defineStore('useAuthStore', {
     state: () => ({
+        darkMode: false,
         authLoading: false,
         authFormLoading: false,
         isLogin: true,

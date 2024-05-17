@@ -2,38 +2,34 @@
 definePageMeta({
     middleware: 'auth',
 })
-
-const { signOut, status, getProviders, getSession } = useAuth()
-const providers = await getProviders()
+const store = useAuthStore()
+const { signOut, getSession } = useAuth()
 const session = await getSession()
-// console.log(providers)
 // console.log(session, 'session')
 const loading = ref(false)
 
 const handdleLogout = async () => {
-    // loading.value = true
+    store.authLoading = true
     await signOut()
-    // loading.value = false
+    store.authLoading = false
 }
 
-const { data } = await useFetch('/api/user')
+// const { data } = await useFetch('/api/user')
 </script>
 
 <template>
     <main class="col-span-12 md:col-span-8 xl:col-span-6">
-        <!-- <div> -->
         <MainSection
             title="home"
-            :loading="loading"
+            :loading="false"
         >
             this is our home page
-            <!-- <pre>
-                {{ data }}
-                {{ status }}
+            <pre>
+                <!-- {{ data }} -->
+                <!-- {{ status }} -->
                 {{ session?.user }}
-            </pre> -->
+            </pre>
         </MainSection>
-        <!-- </div> -->
     </main>
     <button
         @click="handdleLogout"
