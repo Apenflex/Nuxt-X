@@ -9,7 +9,7 @@ import bcrypt from "bcrypt";
 const config = useRuntimeConfig()
 
 export default NuxtAuthHandler({
-    secret: config.authSecret,
+    secret: config.AUTH_SECRET,
     pages: {
         signIn: '/login',
     },

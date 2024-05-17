@@ -6,7 +6,7 @@ export default defineNuxtConfig({
             // apiHost: process.env.API_HOST,
             appHost: process.env.APP_HOST
         },
-        authSecret: process.env.AUTH_SECRET,
+        AUTH_SECRET: process.env.AUTH_SECRET,
         GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
         GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
         GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
