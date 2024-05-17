@@ -1,5 +1,6 @@
 import { NuxtAuthHandler } from '#auth'
 import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from "~/prisma/client.js";
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
@@ -18,6 +19,10 @@ export default NuxtAuthHandler({
         GithubProvider.default({
             clientId: config.GITHUB_CLIENT_ID,
             clientSecret: config.GITHUB_CLIENT_SECRET
+        }),
+        GoogleProvider.default({
+            clientId: config.GOOGLE_CLIENT_ID,
+            clientSecret: config.GOOGLE_CLIENT_SECRET
         }),
         CredentialsProvider.default({
             name: 'credentials',

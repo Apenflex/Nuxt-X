@@ -8,13 +8,13 @@ const handleSignIn = async (provider) => {
     store.authLoading = false
 }
 
-const providerBtn = ref([
+const providers = ref([
     {
-        provider: 'github',
+        name: 'github',
         icon: 'mdi:github',
     },
     {
-        provider: 'google',
+        name: 'google',
         icon: 'mdi:google',
     }
 ])
@@ -37,12 +37,12 @@ const providerBtn = ref([
                     or continue with
                 </div>
                 <div class="w-full flex justify-center gap-2">
-                    <template v-for="btn in providerBtn">
+                    <template v-for="provider in providers">
                         <button 
                             class="w-full flex justify-center py-1 px-5 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 defaultTransition"
-                            @click="handleSignIn(btn.provider)"
+                            @click="handleSignIn(provider.name)"
                         >
-                            <Icon :name="btn.icon" class="w-7 h-7" />
+                            <Icon :name="provider.icon" class="w-7 h-7" />
                         </button>
                     </template>
                 </div>

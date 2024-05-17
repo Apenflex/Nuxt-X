@@ -41,7 +41,7 @@ const props = defineProps({
         >
             {{ label }}
         </label>
-        <div class="mt-1">
+        <div class="mt-1 relative">
             <input
                 v-model="modelValue"
                 :id="`input-${name}`"
@@ -49,8 +49,9 @@ const props = defineProps({
                 :placeholder="placeholder"
                 :type="type"
                 :disabled="disabled"
-                class="block px-4 w-full border-gray-500 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm defaultTransition"
+                class="block pl-4 pr-8 w-full border-gray-500 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm defaultTransition"
             >
+            <slot name="icon" />
         </div>
         <p 
             v-if="error"

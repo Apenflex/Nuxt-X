@@ -5,7 +5,6 @@ const { signIn } = useAuth()
 
 const { meta, handleSubmit, resetForm } = useForm()
 const { value: email, errorMessage: emailError } = useField('Email', 'email')
-// const { value: username, errorMessage: usernameError } = useField('User Name', 'required')
 const { value: password, errorMessage: passwordErrorMessage } = useField('Password', 'password')
 
 const toast = useToast()
@@ -28,6 +27,9 @@ const onSubmit = handleSubmit(async() => {
     store.authLoading = false
     store.authFormLoading = false
 })
+
+const showPassword = ref(false)
+const passwordType = computed(() => showPassword.value ? 'text' : 'password')
 </script>
 
 <template>
@@ -49,9 +51,17 @@ const onSubmit = handleSubmit(async() => {
                 name="password"
                 label="Password"
                 placeholder="**********"
-                type="password"
+                :type="passwordType"
                 :error="passwordErrorMessage"
-            />
+            >
+                <template #icon>
+                    <Icon 
+                        :name="showPassword ? 'mdi:eye-off' : 'mdi:eye'" 
+                        class="h-5 w-5 text-gray-500 absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                        @click="showPassword = !showPassword"
+                    />
+                </template>
+            </Input>
             <button
                 type="submit"
                 class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 defaultTransition"
