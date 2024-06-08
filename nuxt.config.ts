@@ -48,9 +48,9 @@ export default defineNuxtConfig({
     auth: {
         globalAppMiddleware: true,
         baseURL: process.env.APP_HOST,
-        provider: {
-            type: 'authjs'
-        }
+        // provider: {
+        //     type: 'authjs'
+        // }
     },
     build: { transpile: ['vue-toastification'] },
     $production: {
