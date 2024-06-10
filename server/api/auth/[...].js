@@ -13,7 +13,6 @@ export default NuxtAuthHandler({
     pages: {
         signIn: '/login',
     },
-    // adapter: PrismaAdapter(prisma),
     adapter: PrismaAdapter(prisma),
     providers: [
         // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
@@ -29,7 +28,7 @@ export default NuxtAuthHandler({
             name: 'credentials',
             credentials: {},
             async authorize(credentials) {
-                console.log(credentials, 'Credentials')
+                // console.log(credentials, 'Credentials')
                 const user = await prisma.user.findUnique({
                     where: {
                         // username: credentials.username
@@ -78,8 +77,5 @@ export default NuxtAuthHandler({
             }
             return session
         },
-        // async signIn(data) {
-        //     console.log('Sign In', data)
-        // }
     },
 })
